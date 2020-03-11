@@ -1,9 +1,12 @@
 dependencies:
-- name: exposecontroller
-  version: 2.3.118
+- alias: expose
+  name: exposecontroller
   repository: http://chartmuseum.jenkins-x.io
-  alias: expose
-- name: exposecontroller
   version: 2.3.118
+- alias: cleanup
+  name: exposecontroller
   repository: http://chartmuseum.jenkins-x.io
-  alias: cleanup
+  version: 2.3.118
+- name: go-quickstart
+  repository: http://bucketrepo/bucketrepo/charts/
+  version: 0.0.1
