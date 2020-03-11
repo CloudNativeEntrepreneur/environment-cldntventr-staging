@@ -15,9 +15,11 @@ expose:
   config:
     domain: cloudnativeentrepreneur.dev
     exposer: Ingress
-    http: "true"
-    tlsacme: "false"
+    http: "false"
+    tlsSecretName: tls-cloudnativeentrepreneur-dev-p
+    tlsacme: "true"
     urltemplate: '{{.Service}}-{{.Namespace}}.{{.Domain}}'
+  production: true
 jenkins:
   Servers:
     Global: {}
