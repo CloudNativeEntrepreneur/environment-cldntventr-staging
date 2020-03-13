@@ -1,7 +1,7 @@
 dependencies:
 - name: content
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.12
+  version: 0.0.13
 - alias: expose
   name: exposecontroller
   repository: http://chartmuseum.jenkins-x.io
