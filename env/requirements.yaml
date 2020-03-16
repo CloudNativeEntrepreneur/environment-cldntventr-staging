@@ -15,4 +15,4 @@ dependencies:
   version: 2.3.118
 - name: www
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.15
+  version: 0.0.16
