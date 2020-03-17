@@ -12,7 +12,8 @@ spec:
   ruleSelector: {}
   alerting:
     alertmanagers:
-      - name: alertmanager
+      - namespace: {{ .Release.Namespace }}
+        name: alertmanager
         port: web
 
 ---
