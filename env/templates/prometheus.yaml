@@ -1,7 +1,8 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
-  name: prometheus
+  name: monitor
+  namespace: monitoring
   labels:
     prometheus: k8s
 spec:
@@ -12,7 +13,7 @@ spec:
   ruleSelector: {}
   alerting:
     alertmanagers:
-      - namespace: {{ .Release.Namespace }}
+      - namespace: monitoring
         name: alertmanager
         port: web
 
@@ -21,7 +22,8 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: Alertmanager
 metadata:
-    name: alertmanager
+    name: monitor
+    namespace: monitoring
 spec:
     replicas: 1
     securityContext: {}
