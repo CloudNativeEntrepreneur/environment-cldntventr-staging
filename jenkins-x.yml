@@ -7,8 +7,10 @@ pipelineConfig:
     value: jx-staging
   pipelines:
     release:
-      postBuild:
+      preBuild:
         steps:
+        - sh: env
+        - sh: jx get vault-config
         - sh: >-
             eval $(jx get vault-config) &&
             wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo &&
