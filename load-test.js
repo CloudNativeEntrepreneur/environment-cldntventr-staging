@@ -1,7 +1,7 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
 
-const { url, users } = __ENV;
+const { url, users, slackUrl } = __ENV;
 
 export let options = {
   stages: [
@@ -20,4 +20,21 @@ export default function() {
     'status was 200': r => r.status == 200,
   });
   sleep(1)
+}
+
+export function teardown(data) {
+	// send notification request to Microsoft Teams API
+  const event = {
+    title: 'Load test finished',
+    text: `${data}`
+	};
+
+  const headers = { 'Content-Type': 'application/json' }
+  const options = { headers }
+
+  http.post(
+    slackUrl,
+    JSON.stringify(event), 
+    options
+  );
 }
