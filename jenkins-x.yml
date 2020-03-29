@@ -12,7 +12,6 @@ pipelineConfig:
         - sh: >-
             wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo &&
             mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/ &&
-            yum -y install k6
-          name: install-k6
-        - sh: url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev users=1000 k6 run ./load-test.js
+            yum -y install k6 &&
+            url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev users=1000 k6 run ./load-test.js
           name: load-test
