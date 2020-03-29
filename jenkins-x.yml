@@ -5,4 +5,11 @@ pipelineConfig:
   env:
   - name: DEPLOY_NAMESPACE
     value: jx-staging
-  pipelines: {}
+  pipelines:
+    release:
+      postBuild:
+        steps:
+        - sh: docker pull loadimpact/k6
+          name: get-load-test-image
+        - sh: docker run --env url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev --env users=1000 -i loadimpact/k6 run - <load.js
+          name: load-test
