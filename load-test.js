@@ -35,7 +35,6 @@ export function teardown(data) {
   console.log(data)
 
   const payload = {
-    mrkdwn: true,
     text: `# Load test finished
     
     Data:
