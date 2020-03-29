@@ -10,10 +10,9 @@ pipelineConfig:
       postBuild:
         steps:
         - sh: >-
-            apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61 && 
-            echo "deb https://dl.bintray.com/loadimpact/deb stable main" | tee -a /etc/apt/sources.list &&
-            apt-get update &&
-            apt-get install k6
+            wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo &&
+            mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/ &&
+            yum install k6
           name: install-k6
         - sh: url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev users=1000 k6 run ./load-test.js
           name: load-test
