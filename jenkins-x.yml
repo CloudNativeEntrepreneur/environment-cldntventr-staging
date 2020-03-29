@@ -9,7 +9,11 @@ pipelineConfig:
     release:
       postBuild:
         steps:
-        - sh: docker pull loadimpact/k6
-          name: get-load-test-image
-        - sh: docker run --env url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev --env users=1000 -i loadimpact/k6 run - <load.js
+        - sh: >-
+            sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61 && 
+            echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list &&
+            sudo apt-get update &&
+            sudo apt-get install k6
+          name: install-k6
+        - sh: url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev users=1000 k6 run ./load-test.js
           name: load-test
