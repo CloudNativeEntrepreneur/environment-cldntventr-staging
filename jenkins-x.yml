@@ -9,17 +9,5 @@ pipelineConfig:
     release:
       preBuild:
         steps:
-        - sh: >-
-            eval $(jx get vault-config) &&
-            curl -L https://github.com/starkandwayne/safe/releases/download/v1.3.4/safe-linux-amd64 --output ./safe-linux-amd64 &&
-            chmod +x ./safe-linux-amd64 &&
-            mv ./safe-linux-amd64 /usr/bin/safe &&
-            echo "webhook url - $(safe get secret/staging/k6:slackUrl)" &&
-            wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo &&
-            mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/ &&
-            yum -y install k6 &&
-            url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev
-            users=1000
-            slackUrl=$(safe get secret/staging/k6:slackUrl)
-            k6 --quiet run ./load-test.js
+        - sh: ./load-test.sh
           name: load-test

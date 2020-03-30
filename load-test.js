@@ -25,28 +25,10 @@ export let options = {
 
 export default function() {
   let res = http.get(url);
-  check(res, {
+  if(!check(res, {
     'status was 200': r => r.status == 200,
-  });
+  })) {
+
+  };
   sleep(1)
-}
-
-export function teardown(data) {
-  console.log(data)
-
-  const payload = {
-    text: `# Load test finished
-    
-    Data:
-    ${data}`
-	};
-
-  const headers = { 'Content-Type': 'application/json' }
-  const options = { headers }
-
-  http.post(
-    slackUrl,
-    JSON.stringify(payload), 
-    options
-  );
 }
