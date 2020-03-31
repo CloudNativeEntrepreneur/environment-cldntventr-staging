@@ -9,5 +9,6 @@ pipelineConfig:
     release:
       preBuild:
         steps:
+        - sh: env
         - sh: ./load-test.sh
           name: load-test
