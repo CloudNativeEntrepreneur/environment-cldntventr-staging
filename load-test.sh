@@ -1,3 +1,7 @@
+#!/bin/bash
+
+echo "Downloading load testing tools..."
+
 curl -L https://github.com/starkandwayne/safe/releases/download/v1.3.4/safe-linux-amd64 --output ./safe-linux-amd64
 chmod +x ./safe-linux-amd64
 mv ./safe-linux-amd64 /usr/bin/safe
