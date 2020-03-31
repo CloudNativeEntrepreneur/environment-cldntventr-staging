@@ -16,9 +16,9 @@ jx get vault-config
 eval `jx get vault-config`
 
 url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev \
-users=20 \
-rampDuration=30s \
-fullLoadDuration=1m \
+users=$LOAD_TEST_USERS \
+rampDuration=$LOAD_TEST_RAMP_DURATION \
+fullLoadDuration=$LOAD_TEST_FULL_LOAD_DURATION \
 k6 --quiet --summary-export ./load-test-results run ./load-test.js
 
 slack_message="$(printf 'Load Test Results:\n```\nSuccessful Requests: %s\nFailed Requests: %s\nMax VUs: %s\nAverage Request Duration: %s```\n\nTo see detailed results, check the build logs with `jx get build logs %s`' \

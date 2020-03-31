@@ -5,6 +5,12 @@ pipelineConfig:
   env:
   - name: DEPLOY_NAMESPACE
     value: jx-staging
+  - name: LOAD_TEST_USERS
+    value: '50'
+  - name: LOAD_TEST_RAMP_DURATION
+    value: 1m
+  - name: LOAD_TEST_FULL_LOAD_DURATION
+    value: 2m
   pipelines:
     release:
       postBuild:
