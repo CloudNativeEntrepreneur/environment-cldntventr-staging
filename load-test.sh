@@ -2,13 +2,13 @@
 
 echo "Downloading load testing tools..."
 
-# curl -L https://github.com/starkandwayne/safe/releases/download/v1.3.4/safe-linux-amd64 --output ./safe-linux-amd64
-# chmod +x ./safe-linux-amd64
-# mv ./safe-linux-amd64 /usr/bin/safe
+curl -L https://github.com/starkandwayne/safe/releases/download/v1.3.4/safe-linux-amd64 --output ./safe-linux-amd64
+chmod +x ./safe-linux-amd64
+mv ./safe-linux-amd64 /usr/bin/safe
 
-# wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo
-# mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/
-# yum -y install k6
+wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo
+mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/
+yum -y install k6
 
 echo "Configuring vault"
 jx get vault-config
@@ -26,7 +26,7 @@ slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \n
   $(cat load-test-results | jq -r '.metrics | .checks.fails') \
   "'$JOB_NAME #$BUILD_NUMBER'" \
 )"
-# slack_message="hello"
+
 echo $slack_message
 
 curl --silent --data-urlencode \
