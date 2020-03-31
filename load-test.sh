@@ -21,11 +21,10 @@ url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev \
 users=1 \
 k6 --quiet --summary-export ./load-test-results run ./load-test.js
 
-slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \nTo see detailed results, check the build logs with `jx get build logs`' \
+slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \nTo see detailed results, check the build logs with `jx get build logs %s`' \
   $(cat load-test-results | jq -r '.metrics | .checks.passes') \
   $(cat load-test-results | jq -r '.metrics | .checks.fails') \
-  "$JOB_NAME" \
-  "$BUILD_NUMBER" \
+  "'$JOB_NAME #$BUILD_NUMBER'" \
 )"
 # slack_message="hello"
 echo $slack_message
