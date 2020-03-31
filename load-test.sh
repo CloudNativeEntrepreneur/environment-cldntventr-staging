@@ -10,7 +10,12 @@ wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo
 mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/
 yum -y install k6
 
-echo "Running Load Test..."
+echo "Configuring vault"
+jx get vault-config
+
+eval `jx get vault-config`
+
+echo "webhook url - $(safe get secret/staging/k6:slackUrl)"
 
 url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev \
 users=1 \
@@ -20,11 +25,8 @@ slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \n
   $(cat load-test-results | jq -r '.metrics | .checks.passes') \
   $(cat load-test-results | jq -r '.metrics | .checks.fails') \
 )"
-slack_message="hello"
+# slack_message="hello"
 echo $slack_message
-
-echo "Configuring vault..."
-eval `jx get vault-config`
 
 curl --silent --data-urlencode \
   "$(printf 'payload={"text": "%s", "username": "%s", "as_user": "true", "link_names": "true", "icon_emoji": "%s" }' \
