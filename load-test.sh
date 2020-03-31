@@ -18,19 +18,16 @@ url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev \
 users=$LOAD_TEST_USERS \
 rampDuration=$LOAD_TEST_RAMP_DURATION \
 fullLoadDuration=$LOAD_TEST_FULL_LOAD_DURATION \
-k6 --quiet --summary-export ./load-test-results run ./load-test.js
+k6 --quiet --summary-export ./load-test-results run ./load-test.js > load-test-output
 
-slack_message="$(printf 'Load Test Results:\n```\nSuccessful Requests: %s\nFailed Requests: %s\nMax VUs: %s\nAverage Request Duration: %s```\n\nTo see detailed results, check the build logs with `jx get build logs %s`' \
-  $(cat load-test-results | jq -r '.metrics | .checks.passes') \
-  $(cat load-test-results | jq -r '.metrics | .checks.fails') \
-  $(cat load-test-results | jq -r '.metrics | .vus_max.value') \
-  $(cat load-test-results | jq -r '.metrics | .http_req_duration.avg')ms \
-  "'$JOB_NAME #$BUILD_NUMBER'" \
-)"
+slack_message=$(cat load-test-output | sed '0,/^.*starting/ s//starting/')
 
-curl --silent --data-urlencode \
-  "$(printf 'payload={"text": "%s"}' \
-      "${slack_message}" \
-  )" \
-  --request POST \
-  --url $(safe get secret/staging/k6:slackUrl)
+curl --silent --data-urlencode "payload={
+\"text\": \"Load Test Results:
+\`\`\`
+$slack_message
+\`\`\`
+\"}
+" \
+--request POST \
+--url $(safe get secret/staging/k6:slackUrl)
