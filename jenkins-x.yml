@@ -10,5 +10,5 @@ pipelineConfig:
       preBuild:
         steps:
         - sh: env
-        - sh: eval $(jx get vault-config) && ./load-test.sh
+        - sh: eval `jx get vault-config` && ./load-test.sh
           name: load-test
