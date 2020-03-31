@@ -10,6 +10,11 @@ wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo
 mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/
 yum -y install k6
 
+echo "Configuring vault"
+jx get vault-config
+
+eval `jx get vault-config`
+
 echo "webhook url - $(safe get secret/staging/k6:slackUrl)"
 
 # slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \nTo see detailed results, check the build logs with `jx get build logs "$JOB_NAME #$BUILD_NUMBER"`' \
