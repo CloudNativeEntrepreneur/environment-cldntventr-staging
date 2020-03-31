@@ -15,27 +15,23 @@ jx get vault-config
 
 eval `jx get vault-config`
 
-# echo "webhook url - $(safe get secret/staging/k6:slackUrl)"
-
 url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev \
-users=10 \
+users=20 \
 rampDuration=30s \
 fullLoadDuration=1m \
 k6 --quiet --summary-export ./load-test-results run ./load-test.js
 
-slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \nTo see detailed results, check the build logs with `jx get build logs %s`' \
+slack_message="$(printf 'Load Test Results:\n```\nSuccessful Requests: %s\nFailed Requests: %s\nMax VUs: %s\nAverage Request Duration: %s```\n\nTo see detailed results, check the build logs with `jx get build logs %s`' \
   $(cat load-test-results | jq -r '.metrics | .checks.passes') \
   $(cat load-test-results | jq -r '.metrics | .checks.fails') \
+  $(cat load-test-results | jq -r '.metrics | .vus_max.value') \
+  $(cat load-test-results | jq -r '.metrics | .http_req_duration.avg')ms \
   "'$JOB_NAME #$BUILD_NUMBER'" \
 )"
 
-echo $slack_message
-
 curl --silent --data-urlencode \
-  "$(printf 'payload={"text": "%s", "username": "%s", "as_user": "true", "link_names": "true", "icon_emoji": "%s" }' \
+  "$(printf 'payload={"text": "%s"}' \
       "${slack_message}" \
-      "K6" \
-      ":chart_with_upwards_trend:" \
   )" \
   --request POST \
   --url $(safe get secret/staging/k6:slackUrl)
