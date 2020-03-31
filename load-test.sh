@@ -15,10 +15,12 @@ jx get vault-config
 
 eval `jx get vault-config`
 
-echo "webhook url - $(safe get secret/staging/k6:slackUrl)"
+# echo "webhook url - $(safe get secret/staging/k6:slackUrl)"
 
 url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev \
-users=1 \
+users=10 \
+rampDuration=30s \
+fullLoadDuration=1m \
 k6 --quiet --summary-export ./load-test-results run ./load-test.js
 
 slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \nTo see detailed results, check the build logs with `jx get build logs %s`' \
