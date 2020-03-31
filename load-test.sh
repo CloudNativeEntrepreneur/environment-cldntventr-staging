@@ -8,14 +8,13 @@ wget https://bintray.com/loadimpact/rpm/rpm -O bintray-loadimpact-rpm.repo
 mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/
 yum -y install k6
 
-eval $(jx get vault-config)
-jx get vault-config
 echo "webhook url - $(safe get secret/staging/k6:slackUrl)"
 
-slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \nTo see detailed results, check the build logs with `jx get build logs`' \
-  $(cat load-test-results | jq -r '.metrics | .checks.passes') \
-  $(cat load-test-results | jq -r '.metrics | .checks.fails') \
-)"
+# slack_message="$(printf 'Load Test Results:\n---\n\n Passes: %s\n Fails: %s\n \nTo see detailed results, check the build logs with `jx get build logs`' \
+#   $(cat load-test-results | jq -r '.metrics | .checks.passes') \
+#   $(cat load-test-results | jq -r '.metrics | .checks.fails') \
+# )"
+slack_message="hello"
 echo $slack_message
 
 curl --silent --data-urlencode \
