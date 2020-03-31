@@ -20,7 +20,7 @@ rampDuration=$LOAD_TEST_RAMP_DURATION \
 fullLoadDuration=$LOAD_TEST_FULL_LOAD_DURATION \
 k6 --quiet --summary-export ./load-test-results run ./load-test.js > load-test-output
 
-slack_message=$(cat load-test-output | sed '0,/^.*starting/ s//starting/')
+slack_message=`cat load-test-output |  sed '/starting/,$!d'`
 
 curl --silent --data-urlencode "payload={
 \"text\": \"Load Test Results:
