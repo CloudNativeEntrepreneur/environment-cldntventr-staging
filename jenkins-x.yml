@@ -7,7 +7,7 @@ pipelineConfig:
     value: jx-staging
   pipelines:
     release:
-      preBuild:
+      postBuild:
         steps:
         - sh: sh ./load-test.sh
           name: load-test
