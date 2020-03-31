@@ -11,7 +11,7 @@ mv bintray-loadimpact-rpm.repo /etc/yum.repos.d/
 yum -y install k6
 
 echo "Configuring vault"
-jx get vault-config
+# jx get vault-config
 
 eval `jx get vault-config`
 

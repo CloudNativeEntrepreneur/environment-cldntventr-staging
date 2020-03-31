@@ -8,9 +8,9 @@ pipelineConfig:
   - name: LOAD_TEST_USERS
     value: '50'
   - name: LOAD_TEST_RAMP_DURATION
-    value: 1m
+    value: 10s
   - name: LOAD_TEST_FULL_LOAD_DURATION
-    value: 2m
+    value: 10s
   pipelines:
     release:
       postBuild:
