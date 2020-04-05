@@ -14,7 +14,7 @@ echo "Configuring vault"
 jx get vault-config >> /dev/null
 eval `jx get vault-config`
 
-url=https://demo-app-jx-staging.cloudnativeentrepreneur.dev \
+url=$PREVIEW_URL \
 users=$LOAD_TEST_USERS \
 rampDuration=$LOAD_TEST_RAMP_DURATION \
 fullLoadDuration=$LOAD_TEST_FULL_LOAD_DURATION \

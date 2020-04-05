@@ -11,6 +11,8 @@ pipelineConfig:
     value: 5m
   - name: LOAD_TEST_FULL_LOAD_DURATION
     value: 10m
+  - name: PREVIEW_URL
+    value: https://demo-app-jx-staging.cloudnativeentrepreneur.dev
   pipelines:
     release:
       postBuild:
