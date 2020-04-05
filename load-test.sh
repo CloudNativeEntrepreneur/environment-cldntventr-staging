@@ -14,11 +14,16 @@ echo "Configuring vault"
 jx get vault-config >> /dev/null
 eval `jx get vault-config`
 
+echo "Starting Load test with Preview URL: $PREVIEW_URL"
+
 url=$PREVIEW_URL \
 users=$LOAD_TEST_USERS \
 rampDuration=$LOAD_TEST_RAMP_DURATION \
 fullLoadDuration=$LOAD_TEST_FULL_LOAD_DURATION \
-k6 --quiet --summary-export ./load-test-results run ./load-test.js > load-test-output
+k6 --quiet --summary-export load-test-results run load-test.js > load-test-output
+
+echo "Load test complete:"
+cat load-test-output
 
 slack_message=`cat load-test-output |  sed '/starting/,$!d'`
 
@@ -40,3 +45,5 @@ $slack_message
 " \
 --request POST \
 --url $(safe get secret/staging/k6:slackUrl)
+
+jx step pr comment -c "```\n$slack_message\n```" -p $PULL_NUMBER -o $REPO_OWNER -r $REPO_NAME
