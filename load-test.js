@@ -14,15 +14,6 @@ export let options = {
   }
 };
 
-// export let options = {
-//   stages: [
-//     { duration: "10s", target: parseInt(users, 10) }
-//   ],
-//   thresholds: {
-//     "http_req_duration": [{ threshold: "p(95)<500", abortOnFail: true }], // 95% of requests must complete below .5s
-//   }
-// };
-
 export default function() {
   let res = http.get(url);
   if(!check(res, {
