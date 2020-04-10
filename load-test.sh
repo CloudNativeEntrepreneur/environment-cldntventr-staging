@@ -30,9 +30,7 @@ slack_message=`cat load-test-output |  sed '/starting/,$!d'`
 curl --silent --data-urlencode "payload={
 \"text\": \"*Load Test Results:*
 
-A load test was run as a result of a new release to staging.
-
-To see the build logs that started this test run \`jx get build logs '$JOB_NAME #$BUILD_NUMBER'\`
+A load test was run. To see the build logs that started this test run \`jx get build logs '$JOB_NAME #$BUILD_NUMBER'\`
 
 The load test was configured to simulate a maximum of $LOAD_TEST_USERS concurrent users. The number of users ramped up to the target number over $LOAD_TEST_RAMP_DURATION, ran at full capacity for $LOAD_TEST_FULL_LOAD_DURATION, and then ramped back down to 0 over the next $LOAD_TEST_RAMP_DURATION. 
 
@@ -45,5 +43,3 @@ $slack_message
 " \
 --request POST \
 --url $(safe get secret/staging/k6:slackUrl)
-
-jx step pr comment -c "```\n$slack_message\n```" -p $PULL_NUMBER -o $REPO_OWNER -r $REPO_NAME
