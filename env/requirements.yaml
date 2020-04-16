@@ -1,7 +1,4 @@
 dependencies:
-- name: auth
-  repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.2
 - name: content
   repository: http://bucketrepo/bucketrepo/charts/
   version: 0.0.27
@@ -16,6 +13,9 @@ dependencies:
   name: exposecontroller
   repository: http://chartmuseum.jenkins-x.io
   version: 2.3.118
+- name: keycloak
+  repository: https://codecentric.github.io/helm-charts
+  version: 7.5.0
 - name: www
   repository: http://bucketrepo/bucketrepo/charts/
   version: 0.0.18
