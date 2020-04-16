@@ -26,11 +26,12 @@ jenkins:
 prow: {}
 
 keycloak:
-  ingress:
-    enabled: true
-    hosts:
-      - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
-    tls:
-    - hosts:
-      - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
-      secretName: tls-{{ .Domain | replace "." "-" }}-p
+  keycloak:
+    ingress:
+      enabled: true
+      hosts:
+        - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
+      tls:
+      - hosts:
+        - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
+        secretName: tls-{{ .Domain | replace "." "-" }}-p
