@@ -24,3 +24,13 @@ jenkins:
   Servers:
     Global: {}
 prow: {}
+
+keycloak:
+  ingress:
+    enabled: true
+    hosts:
+      - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
+    tls:
+    - hosts:
+      - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
+      secretName: tls-{{ .Domain | replace "." "-" }}-p
