@@ -27,11 +27,6 @@ prow: {}
 
 keycloak:
   keycloak:
-    ingress:
-      enabled: true
-      hosts:
-        - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
-      tls:
-      - hosts:
-        - keycloak{{ .Release.Namespace }}.cloudnativeentrepreneur.dev
-        secretName: tls-{{ .Domain | replace "." "-" }}-p
+    service:
+      annotations:
+        fabric8.io/expose: true
