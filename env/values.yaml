@@ -26,4 +26,13 @@ jenkins:
 prow: {}
 auth:
   postgresAdminPassword: vault:staging/auth/postgres:password
+  postgresAdminUser: vault:staging/auth/postgres:user
   keycloakAdminPassword: vault:staging/auth/keycloak:password
+  keycloakAdminUser: vault:staging/auth/keycloak:user
+  keycloak:
+    existingSecret: auth-keycloak
+    username: vault:staging/auth/postgres:user
+    persistence:
+      existingSecret: auth-postgres
+      existingSecretPasswordKey: password
+      existingSecretUsernameKey: user
