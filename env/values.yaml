@@ -24,3 +24,6 @@ jenkins:
   Servers:
     Global: {}
 prow: {}
+auth:
+  postgresAdminPassword: vault:staging/auth/postgres:password
+  keycloakAdminPassword: vault:staging/auth/keycloak:password
