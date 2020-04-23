@@ -34,8 +34,8 @@ auth:
       existingSecret: auth-keycloak
       existingSecretKey: adminPassword
       username: vault:staging/auth/postgres:adminUsername
-      dbHost: jx-postgresql-ha-postgresql.{{ .Release.Namespace }}.svc.cluster.local
       persistence:
+        dbHost: jx-postgresql-ha-postgresql.{{ .Release.Namespace }}.svc.cluster.local
         existingSecret: auth-postgres
         existingSecretPasswordKey: adminPassword
         existingSecretUsernameKey: adminUsername
