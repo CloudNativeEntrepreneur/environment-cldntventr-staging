@@ -25,14 +25,27 @@ jenkins:
     Global: {}
 prow: {}
 auth:
-  postgresAdminPassword: vault:staging/auth/postgres:password
-  postgresAdminUser: vault:staging/auth/postgres:user
-  keycloakAdminPassword: vault:staging/auth/keycloak:password
-  keycloakAdminUser: vault:staging/auth/keycloak:user
+  postgresAdminPassword: vault:staging/auth/postgres:adminPassword
+  postgresAdminUsername: vault:staging/auth/postgres:adminUsername
+  keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
+  keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
   keycloak:
-    existingSecret: auth-keycloak
-    username: vault:staging/auth/postgres:user
-    persistence:
-      existingSecret: auth-postgres
-      existingSecretPasswordKey: password
-      existingSecretUsernameKey: user
+    keycloak:
+      existingSecret: auth-keycloak
+      existingSecretKey: adminPassword
+      username: vault:staging/auth/postgres:adminUsername
+      persistence:
+        existingSecret: auth-postgres
+        existingSecretPasswordKey: adminPassword
+        existingSecretUsernameKey: adminUsername
+  postgresql-ha:
+    global:
+      postgresql:
+        username: vault:staging/auth/postgres:adminUsername
+        password: vault:staging/auth/postgres:adminPassword
+        repmgrUsername: vault:staging/auth/postgres:repmgrUsername
+        repmgrPassword: vault:staging/auth/postgres:repmgrPassword
+        database: keycloak
+      pgpool:
+        adminUsername: vault:staging/auth/postgres:pgpoolAdminUsername
+        adminPassword: vault:staging/auth/postgres:pgpoolAdminPassword
