@@ -43,4 +43,9 @@ auth:
       postgresql:
         username: vault:staging/auth/postgres:adminUsername
         password: vault:staging/auth/postgres:adminPassword
+        repmgrUsername: vault:staging/auth/postgres:repmgrUsername
+        repmgrPassword: vault:staging/auth/postgres:repmgrPassword
         database: keycloak
+      pgpool:
+        adminUsername: vault:staging/auth/postgres:pgpoolAdminUsername
+        adminPassword: vault:staging/auth/postgres:pgpoolAdminPassword
