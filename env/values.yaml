@@ -1,4 +1,30 @@
 PipelineSecrets: {}
+auth:
+  keycloak:
+    keycloak:
+      existingSecret: auth-keycloak
+      existingSecretKey: adminPassword
+      persistence:
+        dbHost: jx-postgresql-ha-pgpool.jx-staging.svc.cluster.local
+        existingSecret: auth-postgres
+        existingSecretPasswordKey: adminPassword
+        existingSecretUsernameKey: adminUsername
+      username: vault:staging/auth/postgres:adminUsername
+  keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
+  keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
+  postgresAdminPassword: vault:staging/auth/postgres:adminPassword
+  postgresAdminUsername: vault:staging/auth/postgres:adminUsername
+  postgresql-ha:
+    global:
+      pgpool:
+        adminPassword: vault:staging/auth/postgres:pgpoolAdminPassword
+        adminUsername: vault:staging/auth/postgres:pgpoolAdminUsername
+      postgresql:
+        database: keycloak
+        password: vault:staging/auth/postgres:adminPassword
+        repmgrPassword: vault:staging/auth/postgres:repmgrPassword
+        repmgrUsername: vault:staging/auth/postgres:repmgrUsername
+        username: vault:staging/auth/postgres:adminUsername
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
@@ -24,29 +50,3 @@ jenkins:
   Servers:
     Global: {}
 prow: {}
-auth:
-  postgresAdminPassword: vault:staging/auth/postgres:adminPassword
-  postgresAdminUsername: vault:staging/auth/postgres:adminUsername
-  keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
-  keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
-  keycloak:
-    keycloak:
-      existingSecret: auth-keycloak
-      existingSecretKey: adminPassword
-      username: vault:staging/auth/postgres:adminUsername
-      persistence:
-        dbHost: jx-postgresql-ha-pgpool.jx-staging.svc.cluster.local
-        existingSecret: auth-postgres
-        existingSecretPasswordKey: adminPassword
-        existingSecretUsernameKey: adminUsername
-  postgresql-ha:
-    global:
-      postgresql:
-        username: vault:staging/auth/postgres:adminUsername
-        password: vault:staging/auth/postgres:adminPassword
-        repmgrUsername: vault:staging/auth/postgres:repmgrUsername
-        repmgrPassword: vault:staging/auth/postgres:repmgrPassword
-        database: keycloak
-      pgpool:
-        adminUsername: vault:staging/auth/postgres:pgpoolAdminUsername
-        adminPassword: vault:staging/auth/postgres:pgpoolAdminPassword
