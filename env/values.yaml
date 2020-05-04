@@ -35,7 +35,6 @@ cleanup:
   - --cleanup
 demo-app:
   keycloak:
-    clientSecret: vault:staging/auth/keycloak:clientSecret
     redirectUris:
       allowAll: false
       includeNamespace: true
