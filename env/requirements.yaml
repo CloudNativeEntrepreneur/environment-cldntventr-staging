@@ -1,7 +1,7 @@
 dependencies:
 - name: auth
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.44
+  version: 0.0.45
 - name: content
   repository: http://bucketrepo/bucketrepo/charts/
   version: 0.0.28
