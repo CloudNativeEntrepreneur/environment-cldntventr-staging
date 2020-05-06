@@ -1,5 +1,3 @@
-domain: &domain cloudnativeentrepreneur.dev
-
 PipelineSecrets: {}
 auth:
   keycloak:
@@ -37,9 +35,10 @@ demo-app:
   keycloak:
     redirectUris:
       allowAll: false
+      domain: cloudnativeentrepreneur.dev
       includeNamespace: true
-      domain: *domain
       serviceName: demo-app
+domain: cloudnativeentrepreneur.dev
 expose:
   Annotations:
     helm.sh/hook: post-install,post-upgrade
@@ -48,7 +47,7 @@ expose:
   - --v
   - 4
   config:
-    domain: *domain
+    domain: cloudnativeentrepreneur.dev
     exposer: Ingress
     http: "false"
     tlsSecretName: tls-cloudnativeentrepreneur-dev-p
