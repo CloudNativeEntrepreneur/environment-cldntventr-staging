@@ -10,6 +10,8 @@ auth:
         existingSecretPasswordKey: adminPassword
         existingSecretUsernameKey: adminUsername
       username: vault:staging/auth/postgres:adminUsername
+  keycloak-controller:
+    replicaCount: 0
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
   postgresAdminPassword: vault:staging/auth/postgres:adminPassword
