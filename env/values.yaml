@@ -1,4 +1,8 @@
 PipelineSecrets: {}
+
+keycloak-controller:
+    enabled: false # enabled in prod, only can have one per cluster
+
 auth:
   keycloak:
     keycloak:
@@ -10,8 +14,6 @@ auth:
         existingSecretPasswordKey: adminPassword
         existingSecretUsernameKey: adminUsername
       username: vault:staging/auth/postgres:adminUsername
-  keycloak-controller:
-    enabled: false # enabled in prod, only can have one per cluster
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
   postgresAdminPassword: vault:staging/auth/postgres:adminPassword
