@@ -1,7 +1,7 @@
 PipelineSecrets: {}
 
 keycloak-controller:
-    enabled: false # enabled in prod, only can have one per cluster
+  enabled: false # enabled in prod, only can have one per cluster
 
 auth:
   keycloak:
