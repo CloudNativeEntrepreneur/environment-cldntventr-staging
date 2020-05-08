@@ -11,7 +11,7 @@ auth:
         existingSecretUsernameKey: adminUsername
       username: vault:staging/auth/postgres:adminUsername
   keycloak-controller:
-    replicaCount: 0
+    enabled: false # enabled in prod, only can have one per cluster
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
   postgresAdminPassword: vault:staging/auth/postgres:adminPassword
