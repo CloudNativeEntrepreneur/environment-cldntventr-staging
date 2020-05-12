@@ -25,6 +25,8 @@ auth:
         repmgrPassword: vault:staging/auth/postgres:repmgrPassword
         repmgrUsername: vault:staging/auth/postgres:repmgrUsername
         username: vault:staging/auth/postgres:adminUsername
+    postgresql:
+      replicaCount: 1
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
