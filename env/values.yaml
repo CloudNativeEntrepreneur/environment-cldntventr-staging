@@ -6,10 +6,10 @@ auth:
       existingSecretKey: adminPassword
       persistence:
         dbVendor: postgres
-        dbHost: jx-postgresql-ha-pgpool.jx-staging.svc.cluster.local
-        existingSecret: auth-postgres
-        existingSecretPasswordKey: adminPassword
-        existingSecretUsernameKey: adminUsername
+        dbHost: jx-patroni.jx-staging.svc.cluster.local
+        existingSecret: jx-patroni
+        existingSecretPasswordKey: password-admin
+        username: admin
       username: vault:staging/auth/postgres:adminUsername
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
