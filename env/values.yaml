@@ -8,7 +8,7 @@ auth:
         dbVendor: postgres
         dbHost: jx-patroni.jx-staging.svc.cluster.local
         dbName: keycloak
-        dbUser: postgres
+        dbUser: admin
         dbPassword: vault:staging/patroni:admin
       username: vault:staging/auth/postgres:adminUsername
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
