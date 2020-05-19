@@ -40,7 +40,7 @@ expose:
     http: "false"
     tlsSecretName: tls-cloudnativeentrepreneur-dev-p
     tlsacme: "true"
-    urltemplate: '{{.Service}}-{{.Namespace}}.{{.Domain}}'
+    urltemplate: '{{.Service}}.{{.Domain}}'
   production: true
 jenkins:
   Servers:
