@@ -45,6 +45,11 @@ expose:
 jenkins:
   Servers:
     Global: {}
+patroni:
+  credentials:
+    superuser: vault:staging/patroni:superuser
+    admin: vault:staging/patroni:admin
+    standby: vault:staging/patroni:standby
 postgresAdminPassword: vault:staging/auth/postgres:adminPassword
 postgresAdminUsername: vault:staging/auth/postgres:adminUsername
 postgresql-ha:
