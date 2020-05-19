@@ -5,6 +5,7 @@ auth:
       existingSecret: auth-keycloak
       existingSecretKey: adminPassword
       persistence:
+        dbVendor: postgres
         dbHost: jx-postgresql-ha-pgpool.jx-staging.svc.cluster.local
         existingSecret: auth-postgres
         existingSecretPasswordKey: adminPassword
@@ -12,21 +13,6 @@ auth:
       username: vault:staging/auth/postgres:adminUsername
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
-  postgresAdminPassword: vault:staging/auth/postgres:adminPassword
-  postgresAdminUsername: vault:staging/auth/postgres:adminUsername
-  postgresql-ha:
-    global:
-      pgpool:
-        adminPassword: vault:staging/auth/postgres:pgpoolAdminPassword
-        adminUsername: vault:staging/auth/postgres:pgpoolAdminUsername
-      postgresql:
-        database: keycloak
-        password: vault:staging/auth/postgres:adminPassword
-        repmgrPassword: vault:staging/auth/postgres:repmgrPassword
-        repmgrUsername: vault:staging/auth/postgres:repmgrUsername
-        username: vault:staging/auth/postgres:adminUsername
-    postgresql:
-      replicaCount: 1
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
@@ -59,6 +45,79 @@ expose:
 jenkins:
   Servers:
     Global: {}
-keycloak-controller:
-  enabled: false
+postgresAdminPassword: vault:staging/auth/postgres:adminPassword
+postgresAdminUsername: vault:staging/auth/postgres:adminUsername
+postgresql-ha:
+  global:
+    pgpool:
+      adminPassword: vault:staging/auth/postgres:pgpoolAdminPassword
+      adminUsername: vault:staging/auth/postgres:pgpoolAdminUsername
+    postgresql:
+      database: keycloak
+      password: vault:staging/auth/postgres:adminPassword
+      repmgrPassword: vault:staging/auth/postgres:repmgrPassword
+      repmgrUsername: vault:staging/auth/postgres:repmgrUsername
+      username: vault:staging/auth/postgres:adminUsername
+  metrics:
+    enabled: true
+  networkPolicy:
+    enabled: true
+    allowExternal: false
+  postgresql:
+    replicaCount: 1
+    affinity: |
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "app.kubernetes.io/component"
+                  operator: In
+                  values:
+                    - postgresql
+            topologyKey: kubernetes.io/hostname
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "app.kubernetes.io/component"
+                    operator: In
+                    values:
+                      - postgresql
+              topologyKey: failure-domain.beta.kubernetes.io/zone
+    resources:
+      limits:
+        cpu: 250m
+        memory: 256Mi
+      requests:
+        cpu: 50m
+        memory: 256Mi
+  pgpool:
+    affinity: |
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "app.kubernetes.io/component"
+                  operator: In
+                  values:
+                    - pgpool
+            topologyKey: kubernetes.io/hostname
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "app.kubernetes.io/component"
+                    operator: In
+                    values:
+                      - pgpool
+              topologyKey: failure-domain.beta.kubernetes.io/zone
+    resources:
+      limits:
+        cpu: 250m
+        memory: 256Mi
+      requests:
+        cpu: 50m
+        memory: 256Mi
 prow: {}
