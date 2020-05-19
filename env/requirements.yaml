@@ -19,9 +19,6 @@ dependencies:
 - name: patroni
   repository: https://kubernetes-charts-incubator.storage.googleapis.com
   version: 0.16.0
-- name: postgresql-ha
-  repository: https://charts.bitnami.com/bitnami
-  version: 3.2.3
 - name: www
   repository: http://bucketrepo/bucketrepo/charts/
   version: 0.0.25
