@@ -10,7 +10,7 @@ auth:
         dbName: keycloak
         dbUser: keycloak
         dbPassword: vault:staging/patroni:keycloak
-      username: vault:staging/auth/postgres:adminUsername
+      username: vault:staging/auth/keycloak:adminUsername
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
 cleanup:
