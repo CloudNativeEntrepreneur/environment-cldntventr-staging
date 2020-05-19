@@ -5,17 +5,17 @@ pipelineConfig:
   env:
   - name: DEPLOY_NAMESPACE
     value: jx-staging
-  - name: LOAD_TEST_USERS
-    value: "1000"
-  - name: LOAD_TEST_RAMP_DURATION
-    value: 5m
-  - name: LOAD_TEST_FULL_LOAD_DURATION
-    value: 10m
-  - name: PREVIEW_URL
-    value: https://demo-app-jx-staging.cloudnativeentrepreneur.dev
-  pipelines:
-    release:
-      postBuild:
-        steps:
-        - name: load-test
-          sh: sh ./load-test.sh
+  # - name: LOAD_TEST_USERS
+  #   value: "1000"
+  # - name: LOAD_TEST_RAMP_DURATION
+  #   value: 5m
+  # - name: LOAD_TEST_FULL_LOAD_DURATION
+  #   value: 10m
+  # - name: PREVIEW_URL
+  #   value: https://demo-app-jx-staging.cloudnativeentrepreneur.dev
+  # pipelines:
+  #   release:
+  #     postBuild:
+  #       steps:
+  #       - name: load-test
+  #         sh: sh ./load-test.sh
