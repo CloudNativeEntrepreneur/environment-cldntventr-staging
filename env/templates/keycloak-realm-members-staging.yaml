@@ -1,0 +1,17 @@
+apiVersion: k8s.kiwigrid.com/v1beta1
+kind: KeycloakRealm
+metadata:
+  name: members-staging
+spec:
+  keycloak: keycloak-{{ .Release.Namespace }}
+  realm: members-staging
+  roles:
+  - admin
+  - member
+  - service
+  - gdd
+  - db
+  - fcf
+  - fsf
+  - md
+  - lp
