@@ -7,7 +7,7 @@ auth:
       persistence:
         dbVendor: postgres
         dbHost: jx-patroni.jx-staging.svc.cluster.local
-        dbName: postgres
+        dbName: keycloak
         dbUser: postgres
         dbPassword: vault:staging/patroni:admin
       username: vault:staging/auth/postgres:adminUsername
