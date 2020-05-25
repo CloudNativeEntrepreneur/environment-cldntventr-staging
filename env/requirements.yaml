@@ -16,9 +16,6 @@ dependencies:
   name: exposecontroller
   repository: http://chartmuseum.jenkins-x.io
   version: 2.3.118
-- name: patroni
-  repository: https://kubernetes-charts-incubator.storage.googleapis.com
-  version: 0.16.0
 - name: www
   repository: http://bucketrepo/bucketrepo/charts/
   version: 0.0.25

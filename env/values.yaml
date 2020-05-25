@@ -45,15 +45,4 @@ expose:
 jenkins:
   Servers:
     Global: {}
-patroni:
-  credentials:
-    admin: vault:staging/patroni:admin
-    standby: vault:staging/patroni:standby
-    superuser: vault:staging/patroni:superuser
-  image:
-    repository: registry.opensource.zalan.do/acid/spilo-12
-    tag: 1.6-p3
-  persistentVolume:
-    size: 8Gi
-    storageClass: ssd-retain
 prow: {}
