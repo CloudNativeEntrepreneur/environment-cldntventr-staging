@@ -8,20 +8,5 @@ A MongoDB cluster is deployed in this environment - before the microservices tha
 To connect to the cluster, run:
 
 ```
-kubectl exec -it mongodb-replicaset-0 -- mongo mydb -u admin -p password --authenticationDatabase admin
-```
-
-Then create a user:
-
-```
-```
-
-Create a database:
-
-```
-```
-
-And make the user the owner:
-
-```
+kubectl exec -it mongodb-replicaset-0 -- mongo -u $(safe get secret/staging/mongodb:adminUser) -p $(safe get secret/staging/mongodb:adminPassword) --authenticationDatabase admin
 ```
