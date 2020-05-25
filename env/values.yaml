@@ -5,11 +5,11 @@ auth:
       existingSecret: auth-keycloak
       existingSecretKey: adminPassword
       persistence:
-        dbVendor: postgres
         dbHost: jx-patroni.jx-staging.svc.cluster.local
         dbName: keycloak
-        dbUser: keycloak
         dbPassword: vault:staging/patroni:keycloak
+        dbUser: keycloak
+        dbVendor: postgres
       username: vault:staging/auth/keycloak:adminUsername
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
@@ -46,14 +46,14 @@ jenkins:
   Servers:
     Global: {}
 patroni:
+  credentials:
+    admin: vault:staging/patroni:admin
+    standby: vault:staging/patroni:standby
+    superuser: vault:staging/patroni:superuser
   image:
     repository: registry.opensource.zalan.do/acid/spilo-12
     tag: 1.6-p3
   persistentVolume:
-    storageClass: ssd-retain
     size: 8Gi
-  credentials:
-    superuser: vault:staging/patroni:superuser
-    admin: vault:staging/patroni:admin
-    standby: vault:staging/patroni:standby
+    storageClass: ssd-retain
 prow: {}
