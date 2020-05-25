@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1alpha1
 kind: KafkaBridge
 metadata:
-  name: servicebus-bridge
+  name: servicebus
 spec:
   replicas: 3
   bootstrapServers: 'servicebus-kafka-bootstrap:9092'
