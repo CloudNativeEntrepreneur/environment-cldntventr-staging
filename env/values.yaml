@@ -74,6 +74,7 @@ mongodb-replicaset:
     adminPassword: vault:staging/mongodb:adminPassword
     metricsUser: vault:staging/mongodb:metricsUser
     metricsPassword: vault:staging/mongodb:metricsPassword
+    key:  vault:staging/mongodb:key
   persistentVolume:
     enabled: true
     storageClass: ssd-retain
