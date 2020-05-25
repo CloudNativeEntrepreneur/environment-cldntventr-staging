@@ -12,7 +12,7 @@ spec:
     cldntvadmin:  # database owner
     - superuser
     - createdb
-    keycloak: {}
+    keycloak:
   databases:
     keycloak: keycloak
   postgresql:
