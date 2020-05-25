@@ -15,11 +15,15 @@ spec:
       transaction.state.log.min.isr: 2
       log.message.format.version: '2.5'
     storage:
-      type: ephemeral
+      type: persistent-claim
+      size: 8Gi
+      class: ssd-retain
   zookeeper:
     replicas: 3
     storage:
-      type: ephemeral
+      type: persistent-claim
+      size: 8Gi
+      class: ssd-retain
   entityOperator:
     topicOperator: {}
     userOperator: {}
