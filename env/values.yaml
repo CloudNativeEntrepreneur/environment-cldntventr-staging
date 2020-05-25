@@ -46,6 +46,9 @@ jenkins:
   Servers:
     Global: {}
 patroni:
+  persistentVolume:
+    storageClass: ssd-retain
+    size: 8Gi
   credentials:
     superuser: vault:staging/patroni:superuser
     admin: vault:staging/patroni:admin
