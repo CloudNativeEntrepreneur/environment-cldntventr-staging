@@ -46,38 +46,38 @@ expose:
 jenkins:
   Servers:
     Global: {}
-prow: {}
 mongodb-replicaset:
   affinity:
     podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: "app"
-                operator: In
-                values:
-                  - mongodb-replicaset
-          topologyKey: kubernetes.io/hostname
       preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          podAffinityTerm:
-            labelSelector:
-              matchExpressions:
-                - key: "app"
-                  operator: In
-                  values:
-                    - mongodb-replicaset
-            topologyKey: failure-domain.beta.kubernetes.io/zone
+      - podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - mongodb-replicaset
+          topologyKey: failure-domain.beta.kubernetes.io/zone
+        weight: 100
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - mongodb-replicaset
+        topologyKey: kubernetes.io/hostname
   auth:
-    enabled: true
-    adminUser: vault:staging/mongodb:adminUser
     adminPassword: vault:staging/mongodb:adminPassword
-    metricsUser: vault:staging/mongodb:metricsUser
+    adminUser: vault:staging/mongodb:adminUser
+    enabled: true
+    key: vault:staging/mongodb:key
     metricsPassword: vault:staging/mongodb:metricsPassword
-    key:  vault:staging/mongodb:key
+    metricsUser: vault:staging/mongodb:metricsUser
   persistentVolume:
     enabled: true
-    storageClass: ssd-retain
     size: 10Gi
+    storageClass: ssd-retain
   podDisruptionBudget:
     minAvailable: 2
+prow: {}
