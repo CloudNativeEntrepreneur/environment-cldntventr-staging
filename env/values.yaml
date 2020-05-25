@@ -48,7 +48,7 @@ jenkins:
     Global: {}
 prow: {}
 mongodb-replicaset:
-  affinity: |
+  affinity:
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         - labelSelector:
