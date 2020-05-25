@@ -1,10 +1,9 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: acid-minimal-cluster
-  namespace: default
+  name: postgresql
 spec:
-  teamId: "acid"
+  teamId: "staging"
   volume:
     size: 8Gi
     storageClass: ssd-retain
@@ -13,9 +12,7 @@ spec:
     cldntvadmin:  # database owner
     - superuser
     - createdb
-    keycloak:
-    - admin
-  databases:
-    keycloak: keycloak  # dbname: owner
+  preparedDatabases:
+    keycloak: {}
   postgresql:
     version: "12"
