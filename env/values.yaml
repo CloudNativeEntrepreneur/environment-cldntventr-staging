@@ -46,6 +46,9 @@ jenkins:
   Servers:
     Global: {}
 patroni:
+  image:
+    repository: registry.opensource.zalan.do/acid/spilo-12
+    tag: 1.6-p3
   persistentVolume:
     storageClass: ssd-retain
     size: 8Gi
