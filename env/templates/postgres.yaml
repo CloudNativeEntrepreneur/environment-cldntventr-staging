@@ -12,7 +12,10 @@ spec:
     cldntvadmin:  # database owner
     - superuser
     - createdb
-  preparedDatabases:
-    keycloak: {}
+    keycloak:  # database owner
+    - superuser
+    - createdb
+  database:
+    keycloak: keycloak
   postgresql:
     version: "12"
