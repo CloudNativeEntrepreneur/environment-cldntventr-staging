@@ -5,8 +5,17 @@ The default git repository used when creating new GitOps based Environments
 
 A MongoDB cluster is deployed in this environment - before the microservices that rely on it can use it, a database must be configured in the cluster.
 
-To connect to the cluster, run:
+### Connect as admin
 
 ```
-kubectl exec -it mongodb-replicaset-0 -- mongo -u $(safe get secret/staging/mongodb:adminUser) -p $(safe get secret/staging/mongodb:adminPassword) --authenticationDatabase admin
+eval $(jx get vault-config)
+kubectl exec -n jx-staging -it jx-mongodb-replicaset-0 -- mongo -u $(safe get secret/staging/mongodb:adminUser) -p $(safe get secret/staging/mongodb:adminPassword) --authenticationDatabase admin
+```
+
+### Create sourced db and user
+
+```
+use sourced
+db.createUser({user: 'sourced', pwd: '<make password then store in vault at /env/mongodb:sourcedPassword>', roles: ['readWrite']})
+db.grantRolesToUser('sourced',[{ role: "dbAdmin", db: "sourced" }])
 ```

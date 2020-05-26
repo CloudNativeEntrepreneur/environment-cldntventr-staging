@@ -74,10 +74,16 @@ mongodb-replicaset:
     key: vault:staging/mongodb:key
     metricsPassword: vault:staging/mongodb:metricsPassword
     metricsUser: vault:staging/mongodb:metricsUser
+    key: vault:staging/mongodb:key
   persistentVolume:
     enabled: true
     size: 10Gi
     storageClass: ssd-retain
   podDisruptionBudget:
     minAvailable: 2
+
 prow: {}
+
+sourced:
+  user: vault:staging/mongodb:sourcedUser
+  password: vault:staging/mongodb:sourcedPassword
