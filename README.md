@@ -22,8 +22,6 @@ db.grantRolesToUser('sourced',[{ role: "dbAdmin", db: "sourced" }])
 
 # Looking for demo-app settings?
 
-`demo-app` is not enabled in this environment, but here they are:
-
 ```
 - name: demo-app
   repository: http://bucketrepo/bucketrepo/charts/

@@ -21,6 +21,13 @@ cleanup:
     helm.sh/hook-delete-policy: hook-succeeded
   Args:
   - --cleanup
+demo-app:
+  keycloak:
+    redirectUris:
+      allowAll: false
+      domain: cloudnativeentrepreneur.dev
+      includeNamespace: true
+      serviceName: demo-app
 domain: cloudnativeentrepreneur.dev
 expose:
   Annotations:
