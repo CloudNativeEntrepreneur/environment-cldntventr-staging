@@ -17,3 +17,8 @@ spec:
     keycloak: keycloak
   postgresql:
     version: "12"
+  aws_or_gcp:
+    additional_secret_mount: "pgsql-wale-staging-creds"
+    additional_secret_mount_path: "/var/secrets/google" # or where ever you want to mount the file
+    wal_gs_bucket: "cldntventr-dev-psql-wale-staging" # name of bucket on where to save the WAL-E logs
+    gcp_credentials: "/var/secrets/google/key.json" # combination of the mount path & key in the K8 resource. (i.e. key.json)
