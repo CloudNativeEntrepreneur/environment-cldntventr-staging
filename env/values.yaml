@@ -21,6 +21,17 @@ cleanup:
     helm.sh/hook-delete-policy: hook-succeeded
   Args:
   - --cleanup
+content:
+  keycloak:
+    redirectUris:
+      allowAll: false
+      includeNamespace: true
+      domain: cloudnativeentrepreneur.dev
+      serviceName: content
+  session:
+    key: vault:staging/auth/session:key
+  cors:
+    origin: https://www-jx-staging.cloudnativeentrepreneur.dev
 demo-app:
   keycloak:
     redirectUris:
@@ -85,3 +96,13 @@ prow: {}
 sourced:
   password: vault:staging/mongodb:sourcedPassword
   user: vault:staging/mongodb:sourcedUser
+www:
+  keycloak:
+    redirectUris:
+      allowAll: false
+      allowLocalhost: true
+      includeNamespace: true
+      domain: cloudnativeentrepreneur.dev
+      serviceName: www
+  session:
+    key: vault:staging/auth/session:key
