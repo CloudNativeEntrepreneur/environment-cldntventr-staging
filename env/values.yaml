@@ -22,16 +22,16 @@ cleanup:
   Args:
   - --cleanup
 content:
+  cors:
+    origin: https://www-jx-staging.cloudnativeentrepreneur.dev
   keycloak:
     redirectUris:
       allowAll: false
-      includeNamespace: true
       domain: cloudnativeentrepreneur.dev
+      includeNamespace: true
       serviceName: content
   session:
     key: vault:staging/auth/session:key
-  cors:
-    origin: https://www-jx-staging.cloudnativeentrepreneur.dev
 demo-app:
   keycloak:
     redirectUris:
@@ -101,8 +101,8 @@ www:
     redirectUris:
       allowAll: false
       allowLocalhost: true
-      includeNamespace: true
       domain: cloudnativeentrepreneur.dev
+      includeNamespace: true
       serviceName: www
   session:
     key: vault:staging/auth/session:key
