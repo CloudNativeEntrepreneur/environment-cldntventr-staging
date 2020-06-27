@@ -23,7 +23,7 @@ cleanup:
   - --cleanup
 content:
   cors:
-    origin: https://www-jx-staging.cloudnativeentrepreneur.dev
+    origin: cloudnativeentrepreneur.dev
   keycloak:
     redirectUris:
       allowAll: false
