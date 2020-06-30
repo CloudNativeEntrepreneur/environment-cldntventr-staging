@@ -97,6 +97,9 @@ sourced:
   password: vault:staging/mongodb:sourcedPassword
   user: vault:staging/mongodb:sourcedUser
 www:
+  env:
+    SAPPER_CLIENT_CONTENT_GRAPHQL_URL: https://content-jx-staging.cloudnativeentrepreneur.dev/graphql
+    SAPPER_SERVER_CONTENT_GRAPHQL_URL: http://content.jx-staging.svc.cluster.local/graphql
   keycloak:
     redirectUris:
       allowAll: false
