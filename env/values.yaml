@@ -11,7 +11,7 @@ auth:
         existingSecret: keycloak.staging-postgresql.credentials.postgresql.acid.zalan.do
         existingSecretPasswordKey: password
         existingSecretUsernameKey: username
-      replicas: 5
+      replicas: 3
       username: vault:staging/auth/keycloak:adminUsername
   keycloakAdminPassword: vault:staging/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:staging/auth/keycloak:adminUsername
