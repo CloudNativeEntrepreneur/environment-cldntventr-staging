@@ -5,9 +5,9 @@ metadata:
 spec:
   teamId: "staging"
   volume:
-    size: 8Gi
-    storageClass: ssd-retain
-  numberOfInstances: 5
+    size: 20Gi
+    storageClass: ssd
+  numberOfInstances: 3
   users:
     cldntvadmin:  # database owner
     - superuser
