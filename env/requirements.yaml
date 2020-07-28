@@ -4,7 +4,7 @@ dependencies:
   version: 0.0.56
 - name: content
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.57
+  version: 0.0.58
 - name: demo-app
   repository: http://bucketrepo/bucketrepo/charts/
   version: 0.0.14
