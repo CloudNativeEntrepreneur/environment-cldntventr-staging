@@ -24,4 +24,4 @@ dependencies:
   version: 0.0.20
 - name: www
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.49
+  version: 0.0.50
