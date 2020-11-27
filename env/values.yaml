@@ -101,6 +101,9 @@ www:
     SAPPER_CLIENT_CONTENT_GRAPHQL_URL: https://content-jx-staging.cloudnativeentrepreneur.dev/graphql
     SAPPER_SERVER_CONTENT_GRAPHQL_URL: http://content.jx-staging.svc.cluster.local/graphql
   keycloak:
+    admin:
+      username: vault:staging/auth/keycloak:adminUsername
+      password: vault:staging/auth/keycloak:adminPassword
     redirectUris:
       allowAll: false
       allowLocalhost: true
@@ -109,3 +112,7 @@ www:
       serviceName: www
   session:
     key: vault:staging/auth/session:key
+  stripe:
+    publicKey: vault:staging/stripe:publicKey
+    secretKey: vault:staging/stripe:secretKey
+    webhookSecret: vault:staging/stripe:webhookSecret
