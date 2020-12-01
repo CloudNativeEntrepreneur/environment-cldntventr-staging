@@ -16,13 +16,13 @@ spec:
     storage:
       type: persistent-claim
       size: 8Gi
-      class: ssd-retain
+      class: ssd
   zookeeper:
     replicas: 3
     storage:
       type: persistent-claim
       size: 8Gi
-      class: ssd-retain
+      class: ssd
   entityOperator:
     topicOperator: {}
     userOperator: {}
