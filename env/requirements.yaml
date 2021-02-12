@@ -16,6 +16,9 @@ dependencies:
   name: exposecontroller
   repository: http://chartmuseum.jenkins-x.io
   version: 2.3.118
+- name: hub
+  repository: http://bucketrepo/bucketrepo/charts/
+  version: 0.0.1
 - name: mongodb-replicaset
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 3.15.1
