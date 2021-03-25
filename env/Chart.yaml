@@ -1,3 +1,4 @@
+apiVersion: v1
 description: GitOps Environment for this Environment
 icon: https://www.cloudbees.com/sites/default/files/Jenkins_8.png
 maintainers:
