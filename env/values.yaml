@@ -58,44 +58,7 @@ expose:
 jenkins:
   Servers:
     Global: {}
-mongodb-replicaset:
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - mongodb-replicaset
-          topologyKey: failure-domain.beta.kubernetes.io/zone
-        weight: 100
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - mongodb-replicaset
-        topologyKey: kubernetes.io/hostname
-  auth:
-    adminPassword: vault:staging/mongodb:adminPassword
-    adminUser: vault:staging/mongodb:adminUser
-    enabled: true
-    key: vault:staging/mongodb:key
-    metricsPassword: vault:staging/mongodb:metricsPassword
-    metricsUser: vault:staging/mongodb:metricsUser
-  persistentVolume:
-    enabled: true
-    size: 10Gi
-    storageClass: ssd-retain
-  podDisruptionBudget:
-    minAvailable: 2
 prow: {}
-sourced:
-  password: vault:staging/mongodb:sourcedPassword
-  user: vault:staging/mongodb:sourcedUser
 www:
   env:
     SAPPER_CLIENT_CONTENT_GRAPHQL_URL: https://content-jx-staging.cloudnativeentrepreneur.dev/graphql
